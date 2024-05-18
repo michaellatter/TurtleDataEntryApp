@@ -1,11 +1,13 @@
 {
   "expo": {
     "name": "TurtleDataEntryApp",
-    "slug": "TurtleDataEntryApp",
+    "slug": "turtle-data-entry-app",
     "version": "1.0.0",
+    "sdkVersion": "51.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
+    "jsEngine": "hermes",
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
@@ -15,6 +17,7 @@
       "supportsTablet": true
     },
     "android": {
+      "package": "com.example.turtlenestingapp",
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
