@@ -1,6 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { useTheme } from '../context/ThemeContext'; // Adjust the path as necessary
+import BottomNavBar from './BottomNavBar'; // Adjust the path as necessary
 
 const NestingDatasheetPage = () => {
   const { theme } = useTheme();
@@ -12,6 +13,7 @@ const NestingDatasheetPage = () => {
       </View>
       <View style={styles.separator} />
       {/* Add more content here */}
+      <BottomNavBar />
     </View>
   );
 };
