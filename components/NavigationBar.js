@@ -1,4 +1,3 @@
-// NavigationBar.js
 import React from 'react';
 import { View, StyleSheet } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
@@ -11,14 +10,17 @@ const NavigationBar = () => {
 
   return (
     <View style={[styles.container, { backgroundColor: theme.rectangle }]}>
-      <NavigationBarButton
-        title="Home"
-        onPress={() => navigation.navigate('NavigationPage')}
-      />
-      <NavigationBarButton
-        title="Data"
-        onPress={() => navigation.navigate('DataPage')} // Adjust as necessary
-      />
+      <View style={styles.buttonContainer}>
+        <NavigationBarButton
+          title="Home"
+          onPress={() => navigation.navigate('NavigationPage')}
+        />
+        <NavigationBarButton
+          title="Data"
+          onPress={() => navigation.navigate('DataPage')} // Adjust as necessary
+        />
+        {/* Add more NavigationBarButton components here as needed */}
+      </View>
     </View>
   );
 };
@@ -32,11 +34,14 @@ const styles = StyleSheet.create({
     left: 0,
     right: 0,
     height: 50,
-    flexDirection: 'row',
-    justifyContent: 'space-between',
+    justifyContent: 'center',
     paddingHorizontal: 20,
     backgroundColor: 'rgba(0, 0, 0, 0.5)', // Semi-transparent background
   },
+  buttonContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-around', // Adjust this property to control spacing between buttons
+    alignItems: 'center',
+    flex: 1,
+  },
 });
-
-
