@@ -1,23 +1,25 @@
 import React from 'react';
-import { View, Text, StyleSheet, Picker } from 'react-native';
+import { View, Text, StyleSheet } from 'react-native';
+import ModalDropdown from 'react-native-modal-dropdown';
 import { useTheme } from '../context/ThemeContext';
 
-// What are these inputs 
 const DropdownMenu = ({ label, options, selectedValue, onValueChange }) => {
   const { theme } = useTheme();
 
   return (
     <View style={styles.container}>
       <Text style={[styles.label, { color: theme.text }]}>{label}</Text>
-      <Picker
-        selectedValue={selectedValue}
-        style={[styles.picker, { color: theme.text, backgroundColor: theme.rectangle }]}
-        onValueChange={onValueChange}
-      >
-        {options.map((option, index) => (
-          <Picker.Item key={index} label={option} value={option} />
-        ))}
-      </Picker>
+      <View style={styles.dropdownContainer}>
+        <ModalDropdown
+          options={options}
+          defaultValue={selectedValue}
+          onSelect={(index, value) => onValueChange(value)}
+          textStyle={[styles.dropdownText, { color: theme.text}]}
+          dropdownStyle={[styles.dropdown, { backgroundColor: theme.rectangle }]}
+          dropdownTextStyle={{ color: theme.text}}
+          style={styles.dropdownButton}
+        />
+      </View>
     </View>
   );
 };
@@ -32,8 +34,26 @@ const styles = StyleSheet.create({
     marginBottom: 5,
     fontSize: 16,
   },
-  picker: {
-    height: 40,
-    width: 150,
+  dropdownContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    borderWidth: 1,
+    width: 170,
+    borderColor: 'gray',
+    borderRadius: 5,
+    padding: 10,
+  },
+  dropdownButton: {
+    flex: 1,
+  },
+  dropdownText: {
+    fontSize: 16,
+    backgroundColor: 'transparent',
+  },
+  dropdown: {
+    width: 150, // Set the width of the dropdown menu
+    borderWidth: 1,
+    borderColor: 'gray',
+    borderRadius: 5,
   },
 });
