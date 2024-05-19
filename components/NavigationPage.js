@@ -6,6 +6,7 @@ import ToggleButton from './ToggleButton';
 import StackNavigator from '../navigation/StackNavigator';
 import { useNavigation } from '@react-navigation/native'; // Import useNavigation
 
+
 const NavigationPage = () => {
   const { theme, toggleTheme } = useTheme();
   const navigation = useNavigation(); // Get the navigation object
