@@ -9,15 +9,15 @@ const DropdownMenu = ({ label, options, selectedValue, onValueChange }) => {
   return (
     <View style={styles.container}>
       <Text style={[styles.label, { color: theme.text }]}>{label}</Text>
-      <View style={styles.dropdownContainer}>
+      <View style={[styles.dropdownContainer, { backgroundColor: theme.rectangle, borderColor: theme.text }]}> 
         <ModalDropdown
           options={options}
           defaultValue={selectedValue}
           onSelect={(index, value) => onValueChange(value)}
-          textStyle={[styles.dropdownText, { color: theme.text}]}
+          textStyle={[styles.dropdownText, { color: theme.text }]}
           dropdownStyle={[styles.dropdown, { backgroundColor: theme.rectangle }]}
-          dropdownTextStyle={{ color: theme.text}}
-          style={styles.dropdownButton}
+          dropdownTextStyle={[styles.dropdownTextStyle, { color: theme.text }]}
+          style={[styles.dropdownButton, { backgroundColor: theme.rectangle }]}
         />
       </View>
     </View>
@@ -45,9 +45,14 @@ const styles = StyleSheet.create({
   },
   dropdownButton: {
     flex: 1,
+    backgroundColor: 'transparent',
   },
   dropdownText: {
     fontSize: 16,
+    backgroundColor: 'transparent',
+  },
+  dropdownTextStyle: {
+    fontSize: 16, 
     backgroundColor: 'transparent',
   },
   dropdown: {
@@ -55,5 +60,6 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: 'gray',
     borderRadius: 5,
+    backgroundColor: 'transparent',
   },
 });
