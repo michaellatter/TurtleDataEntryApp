@@ -8,7 +8,7 @@ const NavigationBarButton = ({ title, icon: Icon, onPress }) => {
 
   return (
     <TouchableOpacity onPress={onPress} style={styles.button}>
-      {Icon && <Icon width={24} height={24} fill={theme.text} />}
+      {Icon && <Icon width={35} height={35} fill={theme.text} />}
       <Text style={[styles.text, { color: theme.text }]}>{title}</Text>
     </TouchableOpacity>
   );
@@ -23,7 +23,7 @@ const styles = StyleSheet.create({
     padding: 10,
   },
   text: {
-    fontSize: 14,
-    marginTop: 5,
+    fontSize: 10,
+    marginTop:0,
   },
 });

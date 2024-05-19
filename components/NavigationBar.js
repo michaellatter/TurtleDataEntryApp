@@ -3,6 +3,8 @@ import { View, StyleSheet } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { useTheme } from '../context/ThemeContext';
 import NavigationBarButton from './NavigationBarButton';
+import HomeIcon from '../assets/home_icon.svg';
+
 
 const NavigationBar = () => {
   const navigation = useNavigation();
@@ -13,6 +15,7 @@ const NavigationBar = () => {
       <View style={styles.buttonContainer}>
         <NavigationBarButton
           title="Home"
+          icon={HomeIcon}
           onPress={() => navigation.navigate('NavigationPage')}
         />
         <NavigationBarButton
@@ -33,7 +36,7 @@ const styles = StyleSheet.create({
     bottom: 0,
     left: 0,
     right: 0,
-    height: 50,
+    height: 60,
     justifyContent: 'center',
     paddingHorizontal: 20,
     backgroundColor: 'rgba(0, 0, 0, 0.5)', // Semi-transparent background
