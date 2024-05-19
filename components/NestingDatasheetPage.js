@@ -1,6 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { useTheme } from '../context/ThemeContext'; // Adjust the path as necessary
+import NavigationBar from './NavigationBar';
 
 const NestingDatasheetPage = () => {
   const { theme } = useTheme();
@@ -11,7 +12,7 @@ const NestingDatasheetPage = () => {
         <Text style={[styles.title, { color: theme.text }]}>Turtle Nesting</Text>
       </View>
       <View style={styles.separator} />
-      {/* Add more content here */}
+      <NavigationBar/>
     </View>
   );
 };
