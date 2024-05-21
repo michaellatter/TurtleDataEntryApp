@@ -1,25 +1,26 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
-import ModalDropdown from 'react-native-modal-dropdown';
+import { Picker } from '@react-native-picker/picker';
 import { useTheme } from '../context/ThemeContext';
 
-const DropdownMenu = ({ label, options, selectedValue, onValueChange, style, width }) => {
+const DropdownMenu = ({ label, options, selectedValue, onValueChange, style, width, height }) => {
   const { theme } = useTheme();
-  const dropDownMenuWidth = `${parseFloat(width)* 0.87}%`;
+  const {heightPicker} = parseFloat(height) - 20
 
   return (
     <View style={[styles.container, style, { width }]}>
       <Text style={[styles.label, { color: theme.text }]}>{label}</Text>
-      <View style={[styles.dropdownContainer, { backgroundColor: theme.rectangle, borderColor: theme.text }]}>
-        <ModalDropdown
-          options={options}
-          defaultValue={selectedValue}
-          onSelect={(index, value) => onValueChange(value)}
-          textStyle={[styles.dropdownText, { color: theme.text }]}
-          dropdownStyle={[styles.dropdown, { width: dropDownMenuWidth }]}
-          dropdownTextStyle={[styles.dropdownText, { backgroundColor: theme.rectangle, color: theme.rectangleText }]}
-          style={[styles.dropdownButton, { backgroundColor: theme.rectangle }]}
-        />
+      <View style={[styles.dropdownContainer, { backgroundColor: theme.rectangle, borderColor: theme.textColor, height }]}>
+        <Picker
+          selectedValue={selectedValue}
+          onValueChange={(itemValue) => onValueChange(itemValue)}
+          style={[styles.picker, { color: theme.text, backgroundColor: theme.rectangle, minHeight: 53 }]} // Adjust height to account for padding
+          itemStyle={{ color: theme.rectangleText}}
+          >
+          {options.map((option, index) => (
+            <Picker.Item key={index} label={option} value={option} />
+          ))}
+        </Picker>
       </View>
     </View>
   );
@@ -40,17 +41,9 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     borderWidth: 1,
     borderRadius: 5,
-    padding: 10,
+    padding: 5, // Adjust padding as needed
   },
-  dropdownButton: {
+  picker: {
     flex: 1,
-    backgroundColor: 'transparent',
-  },
-  dropdownText: {
-    fontSize: 16,
-  },
-  dropdown: {
-    borderWidth: 1,
-    borderRadius: 5,
   },
 });

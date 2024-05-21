@@ -18,6 +18,7 @@ const NestingDatasheetPage = () => {
   const [activity, setActivity] = useState(activityOptions[0]);
 
   const inputWidth = screenWidth > 600 ? '30%' : '90%'; // Adjust width based on screen size
+  const inputHeight = 54.5; // Set the desired height for both components
 
   return (
     <>
@@ -32,7 +33,8 @@ const NestingDatasheetPage = () => {
               label="Tag Number"
               value={tag}
               onChangeText={setTag}
-              width = {inputWidth}
+              width={inputWidth}
+              height={inputHeight} // Set height here
             />
             <DropdownMenu
               label="Species"
@@ -40,6 +42,7 @@ const NestingDatasheetPage = () => {
               selectedValue={species}
               onValueChange={setSpecies}
               width={inputWidth}
+              height={inputHeight} // Set height here
             />
             <DropdownMenu
               label="Nesting Activity"
@@ -47,6 +50,7 @@ const NestingDatasheetPage = () => {
               selectedValue={activity}
               onValueChange={setActivity}
               width={inputWidth}
+              height={inputHeight} // Set height here
             />
           </View>
         </View>
@@ -69,6 +73,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
     paddingBottom: 20,
     borderBottomWidth: 2,
+    borderBottomColor: 'grey',
   },
   title: {
     fontSize: 24,
@@ -96,4 +101,3 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
   },
 });
-
