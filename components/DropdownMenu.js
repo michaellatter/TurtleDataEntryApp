@@ -5,7 +5,7 @@ import { useTheme } from '../context/ThemeContext';
 
 const DropdownMenu = ({ label, options, selectedValue, onValueChange, style, width, height }) => {
   const { theme } = useTheme();
-  const {heightPicker} = parseFloat(height) - 20
+  const {heightPicker} = parseFloat(height) - 20 //redundant, set hard atm
 
   return (
     <View style={[styles.container, style, { width }]}>
@@ -14,8 +14,8 @@ const DropdownMenu = ({ label, options, selectedValue, onValueChange, style, wid
         <Picker
           selectedValue={selectedValue}
           onValueChange={(itemValue) => onValueChange(itemValue)}
-          style={[styles.picker, { color: theme.text, backgroundColor: theme.rectangle, minHeight: 53 }]} // Adjust height to account for padding
-          itemStyle={{ color: theme.rectangleText}}
+          style={[styles.picker, { color: theme.text, backgroundColor: theme.rectangle, minHeight: 52 }]} // Adjust height to account for padding
+          itemStyle={{ color: theme.rectangleText, backgroundColor: theme.rectangle}}
           >
           {options.map((option, index) => (
             <Picker.Item key={index} label={option} value={option} />

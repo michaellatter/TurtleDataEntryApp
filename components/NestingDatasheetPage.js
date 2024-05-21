@@ -14,8 +14,8 @@ const screenWidth = Dimensions.get('window').width;
 const NestingDatasheetPage = () => {
   const { theme } = useTheme();
   const [tag, setTag] = useState('');
-  const [species, setSpecies] = useState(speciesOptions[0]);
-  const [activity, setActivity] = useState(activityOptions[0]);
+  const [species, setSpecies] = useState('');
+  const [activity, setActivity] = useState('');
 
   const inputWidth = screenWidth > 600 ? '30%' : '90%'; // Adjust width based on screen size
   const inputHeight = 54.5; // Set the desired height for both components
