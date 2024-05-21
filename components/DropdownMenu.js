@@ -3,20 +3,21 @@ import { View, Text, StyleSheet } from 'react-native';
 import ModalDropdown from 'react-native-modal-dropdown';
 import { useTheme } from '../context/ThemeContext';
 
-const DropdownMenu = ({ label, options, selectedValue, onValueChange }) => {
+const DropdownMenu = ({ label, options, selectedValue, onValueChange, style, width }) => {
   const { theme } = useTheme();
+  const dropDownMenuWidth = `${parseFloat(width)* 0.87}%`;
 
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, style, { width }]}>
       <Text style={[styles.label, { color: theme.text }]}>{label}</Text>
-      <View style={[styles.dropdownContainer, { backgroundColor: theme.rectangle, borderColor: theme.text }]}> 
+      <View style={[styles.dropdownContainer, { backgroundColor: theme.rectangle, borderColor: theme.text }]}>
         <ModalDropdown
           options={options}
           defaultValue={selectedValue}
           onSelect={(index, value) => onValueChange(value)}
           textStyle={[styles.dropdownText, { color: theme.text }]}
-          dropdownStyle={[styles.dropdown, { backgroundColor: theme.rectangle }]}
-          dropdownTextStyle={[styles.dropdownTextStyle, { color: theme.text }]}
+          dropdownStyle={[styles.dropdown, { width: dropDownMenuWidth }]}
+          dropdownTextStyle={[styles.dropdownText, { backgroundColor: theme.rectangle, color: theme.rectangleText }]}
           style={[styles.dropdownButton, { backgroundColor: theme.rectangle }]}
         />
       </View>
@@ -38,8 +39,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     borderWidth: 1,
-    width: 170,
-    borderColor: 'gray',
     borderRadius: 5,
     padding: 10,
   },
@@ -49,17 +48,9 @@ const styles = StyleSheet.create({
   },
   dropdownText: {
     fontSize: 16,
-    backgroundColor: 'transparent',
-  },
-  dropdownTextStyle: {
-    fontSize: 16, 
-    backgroundColor: 'transparent',
   },
   dropdown: {
-    width: 150, // Set the width of the dropdown menu
     borderWidth: 1,
-    borderColor: 'gray',
     borderRadius: 5,
-    backgroundColor: 'transparent',
   },
 });

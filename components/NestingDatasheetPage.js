@@ -1,14 +1,15 @@
 import React, { useState } from 'react';
-import { StyleSheet, Text, View, ScrollView } from 'react-native';
-import { Dimensions } from 'react-native';
+import { StyleSheet, Text, View, ScrollView, Dimensions } from 'react-native';
 import { useTheme } from '../context/ThemeContext';
 import NavigationBar from './NavigationBar';
 import TextField from './TextField';
-import DropDownMenu from './DropdownMenu';
+import DropdownMenu from './DropdownMenu';
 
-const screenWidth = Dimensions.get('window').width;
 const speciesOptions = ['Loggerhead', 'Flatback', 'Green', 'Hawksbill', 'Olive Ridley', 'Kemps Ridley'];
 const activityOptions = ['Laid', 'No Lay', 'Laid/Disturb'];
+
+// Get screen width
+const screenWidth = Dimensions.get('window').width;
 
 const NestingDatasheetPage = () => {
   const { theme } = useTheme();
@@ -16,13 +17,14 @@ const NestingDatasheetPage = () => {
   const [species, setSpecies] = useState(speciesOptions[0]);
   const [activity, setActivity] = useState(activityOptions[0]);
 
+  const inputWidth = screenWidth > 600 ? '30%' : '90%'; // Adjust width based on screen size
+
   return (
     <>
       <ScrollView style={[styles.container, { backgroundColor: theme.background }]}>
         <View style={styles.titleContainer}>
-          <Text style={[styles.title, { color: theme.text }]}>Turtle Nesting</Text>
+          <Text style={[styles.title, { color: theme.text, fontSize: screenWidth > 600 ? 30 : 24 }]}>Turtle Nesting</Text>
         </View>
-        <View style={styles.separator} />
         <View style={styles.section}>
           <Text style={[styles.sectionTitle, { color: theme.text }]}>IDENTIFICATION</Text>
           <View style={screenWidth > 600 ? styles.row : styles.column}>
@@ -30,18 +32,21 @@ const NestingDatasheetPage = () => {
               label="Tag Number"
               value={tag}
               onChangeText={setTag}
+              width = {inputWidth}
             />
-            <DropDownMenu
+            <DropdownMenu
               label="Species"
               options={speciesOptions}
               selectedValue={species}
               onValueChange={setSpecies}
+              width={inputWidth}
             />
-            <DropDownMenu
+            <DropdownMenu
               label="Nesting Activity"
               options={activityOptions}
               selectedValue={activity}
               onValueChange={setActivity}
+              width={inputWidth}
             />
           </View>
         </View>
@@ -62,12 +67,14 @@ const styles = StyleSheet.create({
   titleContainer: {
     paddingVertical: 20,
     paddingHorizontal: 20,
-    borderBottomWidth: 1,
-    borderBottomColor: 'grey',
+    paddingBottom: 20,
+    borderBottomWidth: 2,
   },
   title: {
     fontSize: 24,
     textAlign: 'left',
+    marginBottom: 1,
+    marginTop: 10,
   },
   separator: {
     height: 1,
@@ -75,7 +82,7 @@ const styles = StyleSheet.create({
   },
   section: {
     margin: 20,
-    paddingBottom: 20,
+    paddingBottom: 15,
   },
   sectionTitle: {
     fontSize: 20,
@@ -86,7 +93,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
   },
   column: {
-    flexDirection: 'column'
-  }, 
+    flexDirection: 'column',
+  },
 });
 
